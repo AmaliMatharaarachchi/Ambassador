@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: HTTP Bin API
+  version: 1.0.11
+paths:
+  /test:
+    get:
+      tags:
+        - Organization (Collection)
+      summary: Get all Organization
+      description: |
+        Get all Organization
+      responses:
+        200:
+          description: |
+            OK.
+            Organization returned
