@@ -1,0 +1,32 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: FilterPolicy
+metadata:
+  annotations:
+    managed-by: ambassador-cloud
+  name: ambassador-cloud
+  namespace: ambassador
+spec:
+  rules:
+  - filters:
+    - name: test-filter
+      namespace: ambassador
+    host: ""
+    path: /test
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Filter
+metadata:
+  name: test-filter
+  namespace: ambassador
+  annotations:
+    managed-by: ambassador-cloud
+spec:
+  APIKey:
+    httpHeader: x-api-key
+    keys:
+      - secretName: filter-test-filter-keys
+...
+
+MDNkZDc4NzgtYTU4Mi00M2EwLWFhYTItM2QwYzQ2OGZlODBm
+---

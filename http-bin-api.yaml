@@ -1,0 +1,39 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: backend-mapping-1686213212935
+  namespace: ambassador
+spec:
+  service: http://backend.ambassador:80
+  timeout_ms: 3000
+  connect_timeout_ms: 3000
+  retry_policy:
+    retry_on: 5xx
+    num_retries: 1
+    per_try_timeout: 0.150s
+  hostname: "*"
+  prefix: /test
+  rewrite: /get
+  labels:
+    ambassador:
+    - group_by:
+      - generic_key:
+          value: backend-mapping-1686213212935
+      - remote_address:
+          key: remote_address
+---
+apiVersion: getambassador.io/v3alpha1
+kind: RateLimit
+metadata:
+  name: rate-limit-for-backend-mapping-1686213212935
+  namespace: ambassador
+spec:
+  domain: ambassador
+  limits:
+  - action: Enforce
+    pattern:
+    - generic_key: backend-mapping-1686213212935
+    - remote_address: "*"
+    rate: 5
+    unit: minute
+    burstFactor: 1

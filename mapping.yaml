@@ -1,0 +1,31 @@
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"getambassador.io/v3alpha1","kind":"Mapping","metadata":{"annotations":{},"name":"backend-mapping-1686213212935","namespace":"ambassador"},"spec":{"connect_timeout_ms":3000,"hostname":"*","labels":{"ambassador":[{"group_by":[{"generic_key":{"value":"backend-mapping-1686213212935"}},{"remote_address":{"key":"remote_address"}}]}]},"prefix":"/test","retry_policy":{"num_retries":1,"per_try_timeout":"0.150s","retry_on":"5xx"},"rewrite":"/get","service":"http://backend.ambassador:80","timeout_ms":3000}}
+  creationTimestamp: "2023-06-08T08:39:46Z"
+  generation: 1
+  name: backend-mapping-1686213212935
+  namespace: ambassador
+  resourceVersion: "7313"
+  uid: fdc0d353-a554-4e5e-bce1-5d86f143438d
+spec:
+  ambassador_id:
+  - --apiVersion-v3alpha1-only--default
+  connect_timeout_ms: 3000
+  labels:
+    ambassador:
+    - group_by:
+      - generic_key: backend-mapping-1686213212935
+      - remote_address
+  prefix: /test
+  retry_policy:
+    num_retries: 1
+    per_try_timeout: 0.150s
+    retry_on: 5xx
+  rewrite: /get
+  service: http://backend.ambassador:80
+  timeout_ms: 3000
+  docs:
+    path: "/openapi-docs"
